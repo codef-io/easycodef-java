@@ -1,0 +1,66 @@
+package io.codef.easycodef;
+
+import static org.junit.Assert.assertNotNull;
+
+import java.io.UnsupportedEncodingException;
+import java.util.HashMap;
+
+import org.junit.Test;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+
+/**
+ * FileName : EasyCodefExample.java
+ * Comment  : EasyCodef 토큰 발급 사용예시
+ * @version : 1.0.1
+ * @author  : notfound404
+ * @date    : Jun 25, 2020
+ */
+public class EasyCodefTokenTest {
+
+	@Test
+	public void usageExample() throws UnsupportedEncodingException, JsonProcessingException, InterruptedException {
+		/**	
+		 * #1.쉬운 코드에프 객체 생성
+		 */
+		EasyCodef codef = new EasyCodef();
+
+		/**	
+		 * #2.데모 클라이언트 정보 설정	
+		 * - 데모 서비스 가입 후 코드에프 홈페이지에 확인 가능(https://codef.io/#/account/keys)
+		 * - 데모 서비스로 상품 조회 요청시 필수 입력 항목
+		 */
+		codef.setClientInfoForDemo(EasyCodefClientInfo.DEMO_CLIENT_ID, EasyCodefClientInfo.DEMO_CLIENT_SECRET);
+		
+		/**	
+		 * #3.정식 클라이언트 정보 설정
+		 * - 정식 서비스 가입 후 코드에프 홈페이지에 확인 가능(https://codef.io/#/account/keys)
+		 * - 정식 서비스로 상품 조회 요청시 필수 입력 항목
+		 */
+		codef.setClientInfo(EasyCodefClientInfo.CLIENT_ID, EasyCodefClientInfo.CLIENT_SECRET);
+		
+		/**	
+		 * #4.RSA암호화를 위한 퍼블릭키 설정
+		 * - 데모/정식 서비스 가입 후 코드에프 홈페이지에 확인 가능(https://codef.io/#/account/keys)
+		 * - 암호화가 필요한 필드에 사용 - encryptValue(String plainText);
+		 */
+		codef.setPublicKey(EasyCodefClientInfo.PUBLIC_KEY);
+		
+		/**	
+		 * #5.코드에프 토큰 발급 요청
+		 * - 서비스타입(0:정식, 1:데모, 2:샌드박스)
+		 */
+		HashMap<String, Object> tokenMap = codef.requestToken(EasyCodefServiceType.DEMO);
+		
+		/**	#6.코드에프 토큰 발급 결과 확인	*/
+		String accessToken = null;
+		try {
+			accessToken = (String)tokenMap.get("access_token");
+			System.out.println(tokenMap.get("access_token"));
+		} catch (Exception e) {
+			e.printStackTrace();
+		} 
+		
+		assertNotNull("엑세스 토큰 발급 실패(클라이언트 정보(EasyCodefClientInfo)가 올바르게 설정되었는지 확인 필요)", accessToken);
+	}
+}
