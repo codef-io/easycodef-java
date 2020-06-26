@@ -18,26 +18,34 @@ import javax.crypto.NoSuchPaddingException;
 import org.apache.commons.io.FileUtils;
 
 /**
- * FileName : EasyCodefUtil.java
- * Comment  : 쉬운 코드에프 유틸 클래스
- * @version : 1.0.1
- * @author  : notfound404
- * @date    : Apr 2, 2020
+ * <pre>
+ * io.codef.easycodef
+ *   |_ EasyCodefUtil.java
+ * </pre>
+ * 
+ * Desc : 쉬운 코드에프 유틸 클래스
+ * @Company : ©CODEF corp.
+ * @Author  : notfound404@codef.io
+ * @Date    : Jun 26, 2020 3:41:39 PM
+ * @Version : 1.0.1
  */
 public class EasyCodefUtil {
 
 	/**
-	 * Comment  : RSA암호화 수행 
-	 * @version : 1.0.1
-	 * @tags    : @param plainText
-	 * @tags    : @return
-	 * @tags    : @throws NoSuchAlgorithmException
-	 * @tags    : @throws InvalidKeySpecException
-	 * @tags    : @throws NoSuchPaddingException
-	 * @tags    : @throws InvalidKeyException
-	 * @tags    : @throws IllegalBlockSizeException
-	 * @tags    : @throws BadPaddingException
-	 * @date    : Mar 30, 2020
+	 * Desc : RSA암호화
+	 * @Company : ©CODEF corp.
+	 * @Author  : notfound404@codef.io
+	 * @Date    : Jun 26, 2020 3:41:50 PM
+	 * @Version : 1.0.1
+	 * @param plainText
+	 * @param publicKey
+	 * @return
+	 * @throws NoSuchAlgorithmException
+	 * @throws InvalidKeySpecException
+	 * @throws NoSuchPaddingException
+	 * @throws InvalidKeyException
+	 * @throws IllegalBlockSizeException
+	 * @throws BadPaddingException
 	 */
 	public static String encryptRSA(String plainText, String publicKey) throws NoSuchAlgorithmException, InvalidKeySpecException, NoSuchPaddingException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException {
 		byte[] bytePublicKey = Base64.getDecoder().decode(publicKey);
@@ -53,12 +61,14 @@ public class EasyCodefUtil {
 	}
 	
 	/**
-	 * Comment  : byte배열로 추출한 파일 정보를 BASE64 문자열로 인코딩
-	 * @version : 1.0.1
-	 * @tags    : @param filePath
-	 * @tags    : @return
-	 * @tags    : @throws IOException
-	 * @date    : Apr 2, 2020
+	 * Desc : byte배열로 추출한 파일 정보를 BASE64 문자열로 인코딩
+	 * @Company : ©CODEF corp.
+	 * @Author  : notfound404@codef.io
+	 * @Date    : Jun 26, 2020 3:41:58 PM
+	 * @Version : 1.0.1
+	 * @param filePath
+	 * @return
+	 * @throws IOException
 	 */
 	public static String encodeToFileString(String filePath) throws IOException {
 		File file = new File(filePath);

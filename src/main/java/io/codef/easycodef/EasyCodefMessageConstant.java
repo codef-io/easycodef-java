@@ -1,11 +1,16 @@
 package io.codef.easycodef;
 
 /**
- * FileName : EasyCodefMessageConstant.java
- * Comment  : EasyCodef에서 사용되는 메시지 코드 클래스
- * @version : 1.0.1
- * @author  : notfound404
- * @date    : Mar 27, 2020
+ * <pre>
+ * io.codef.easycodef
+ *   |_ EasyCodefMessageConstant.java
+ * </pre>
+ * 
+ * Desc : EasyCodef에서 사용되는 메시지 코드 클래스
+ * @Company : ©CODEF corp.
+ * @Author  : notfound404@codef.io
+ * @Date    : Jun 26, 2020 3:36:41 PM
+ * @Version : 1.0.1
  */
 public enum EasyCodefMessageConstant {
 

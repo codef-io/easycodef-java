@@ -4,11 +4,16 @@ import java.util.HashMap;
 import java.util.List;
 
 /**
- * FileName : EasyCodefResponse.java
- * Comment  : 코드에프 응답 결과 클래스
- * @version : 1.0.1
- * @author  : notfound404
- * @date    : Mar 27, 2020
+ * <pre>
+ * io.codef.easycodef
+ *   |_ EasyCodefResponse.java
+ * </pre>
+ * 
+ * Desc : 코드에프 응답 결과 클래스
+ * @Company : ©CODEF corp.
+ * @Author  : notfound404@codef.io
+ * @Date    : Jun 26, 2020 3:38:30 PM
+ * @Version : 1.0.1
  */
 public class EasyCodefResponse extends HashMap<String, Object>{
 	
@@ -18,10 +23,11 @@ public class EasyCodefResponse extends HashMap<String, Object>{
 	private Object data;
 	
 	/**
-	 * Comment  : EasyCodefResponse 생성자
-	 * @version : 1.0.1
-	 * @tags    : 
-	 * @date    : Mar 27, 2020
+	 * Desc : EasyCodefResponse 생성자
+	 * @Company : ©CODEF corp.
+	 * @Author  : notfound404@codef.io
+	 * @Date    : Jun 26, 2020 3:38:37 PM
+	 * @Version : 1.0.1
 	 */
 	protected EasyCodefResponse() {
 		result = new HashMap<String,Object>();
@@ -34,10 +40,12 @@ public class EasyCodefResponse extends HashMap<String, Object>{
 	}
 	
 	/**
-	 * Comment  : EasyCodefResponse 생성자
-	 * @version : 1.0.1
-	 * @tags    : 
-	 * @date    : Mar 27, 2020
+	 * Desc : EasyCodefResponse 생성자
+	 * @Company : ©CODEF corp.
+	 * @Author  : notfound404@codef.io
+	 * @Date    : Jun 26, 2020 3:39:55 PM
+	 * @Version : 1.0.1
+	 * @param map
 	 */
 	@SuppressWarnings("unchecked")
 	protected EasyCodefResponse(HashMap<String, Object> map) {
@@ -53,10 +61,12 @@ public class EasyCodefResponse extends HashMap<String, Object>{
 	}
 	
 	/**
-	 * Comment  : EasyCodefResponse 생성자
-	 * @version : 1.0.1
-	 * @tags    : @param message
-	 * @date    : Mar 27, 2020
+	 * Desc : EasyCodefResponse 생성자
+	 * @Company : ©CODEF corp.
+	 * @Author  : notfound404@codef.io
+	 * @Date    : Jun 26, 2020 3:40:00 PM
+	 * @Version : 1.0.1
+	 * @param message
 	 */
 	protected EasyCodefResponse(EasyCodefMessageConstant message) {
 		result = new HashMap<String,Object>();
@@ -69,11 +79,13 @@ public class EasyCodefResponse extends HashMap<String, Object>{
 	}
 	
 	/**
-	 * Comment  : EasyCodefResponse 생성자
-	 * @version : 1.0.1
-	 * @tags    : @param message
-	 * @tags    : @param extraMessage
-	 * @date    : Mar 27, 2020
+	 * Desc : EasyCodefResponse 생성자
+	 * @Company : ©CODEF corp.
+	 * @Author  : notfound404@codef.io
+	 * @Date    : Jun 26, 2020 3:40:06 PM
+	 * @Version : 1.0.1
+	 * @param message
+	 * @param extraMessage
 	 */
 	protected EasyCodefResponse(EasyCodefMessageConstant message, String extraMessage) {
 		result = new HashMap<String,Object>();
@@ -87,12 +99,14 @@ public class EasyCodefResponse extends HashMap<String, Object>{
 
 	
 	/**
-	 * Comment  : 요청 수행 결과 코드 설정 
-	 * @version : 1.0.1
-	 * @tags    : @param errCode
-	 * @tags    : @param errMsg
-	 * @tags    : @param extraMsg
-	 * @date    : Mar 27, 2020
+	 * Desc : 요청 수행 결과 코드 설정 
+	 * @Company : ©CODEF corp.
+	 * @Author  : notfound404@codef.io
+	 * @Date    : Jun 26, 2020 3:40:12 PM
+	 * @Version : 1.0.1
+	 * @param errCode
+	 * @param errMsg
+	 * @param extraMsg
 	 */
 	protected void setResultMessage(String errCode, String errMsg, String extraMsg) {
 		this.result.put(EasyCodefConstant.CODE, errCode);
@@ -101,10 +115,12 @@ public class EasyCodefResponse extends HashMap<String, Object>{
 	}
 	
 	/**
-	 * Comment  : 요청 수행 결과 코드 설정 
-	 * @version : 1.0.1
-	 * @tags    : @param message
-	 * @date    : Mar 27, 2020
+	 * Desc : 요청 수행 결과 코드 설정 
+	 * @Company : ©CODEF corp.
+	 * @Author  : notfound404@codef.io
+	 * @Date    : Jun 26, 2020 3:40:18 PM
+	 * @Version : 1.0.1
+	 * @param message
 	 */
 	protected void setResultMessage(EasyCodefMessageConstant message) {
 		this.result.put(EasyCodefConstant.CODE, message.getCode());
@@ -115,10 +131,12 @@ public class EasyCodefResponse extends HashMap<String, Object>{
 	
 
 	/**
-	 * Comment  : Override toString 
-	 * @version : 1.0.1
-	 * @tags    : @return
-	 * @date    : Mar 27, 2020
+	 * Desc : Override toString 
+	 * @Company : ©CODEF corp.
+	 * @Author  : notfound404@codef.io
+	 * @Date    : Jun 26, 2020 3:40:26 PM
+	 * @Version : 1.0.1
+	 * @return
 	 */
 	@Override
 	public String toString() {

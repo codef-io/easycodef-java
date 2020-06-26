@@ -18,26 +18,33 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
- * FileName : EasyCodefConnector.java
- * Comment  : CODEF 엑세스 토큰 및 상품 조회를 위한 HTTP 요청 클래스  
- * @version : 1.0.1
- * @author  : notfound404
- * @date    : Mar 30, 2020
+ * <pre>
+ * io.codef.easycodef
+ *   |_ EasyCodefConnector.java
+ * </pre>
+ * 
+ * Desc : CODEF 엑세스 토큰 및 상품 조회를 위한 HTTP 요청 클래스
+ * @Company : ©CODEF corp.
+ * @Author  : notfound404@codef.io
+ * @Date    : Jun 26, 2020 3:35:17 PM
+ * @Version : 1.0.1
  */
 public class EasyCodefConnector {
 	private static ObjectMapper mapper = new ObjectMapper();
 	private static final int REPEAT_COUNT = 3;
 	
 	/**
-	 * Comment  : CODEF 상품 조회 요청
-	 * @version : 1.0.1
-	 * @param serviceType 
-	 * @param properties 
-	 * @throws InterruptedException 
-	 * @tags    : @param urlPath
-	 * @tags    : @param bodyMap
-	 * @tags    : @return
-	 * @date    : Mar 30, 2020
+	 * Desc : CODEF 상품 조회 요청
+	 * @Company : ©CODEF corp.
+	 * @Author  : notfound404@codef.io
+	 * @Date    : Jun 26, 2020 3:35:26 PM
+	 * @Version : 1.0.1
+	 * @param urlPath
+	 * @param serviceType
+	 * @param bodyMap
+	 * @param properties
+	 * @return
+	 * @throws InterruptedException
 	 */
 	protected static EasyCodefResponse execute(String urlPath, int serviceType, HashMap<String, Object> bodyMap, EasyCodefProperties properties) throws InterruptedException {
 		/**	#1.토큰 체크	*/
@@ -91,13 +98,15 @@ public class EasyCodefConnector {
 	}
 	
 	/**
-	 * Comment  : HTTP POST 요청
-	 * @version : 1.0.1
-	 * @tags    : @param urlPath
-	 * @tags    : @param token
-	 * @tags    : @param bodyString
-	 * @tags    : @return
-	 * @date    : Mar 30, 2020
+	 * Desc : CODEF HTTP POST 요청
+	 * @Company : ©CODEF corp.
+	 * @Author  : notfound404@codef.io
+	 * @Date    : Jun 26, 2020 3:35:34 PM
+	 * @Version : 1.0.1
+	 * @param urlPath
+	 * @param token
+	 * @param bodyString
+	 * @return
 	 */
 	private static HashMap<String, Object> requestProduct(String urlPath, String token, String bodyString) {
 		BufferedReader br = null;
@@ -165,13 +174,15 @@ public class EasyCodefConnector {
 	}
 	
 	/**
-	 * Comment  : 엑세스 토큰 발급
-	 * @version : 1.0.1
-	 * @return 
-	 * @throws InterruptedException 
-	 * @tags    : @param clientId
-	 * @tags    : @param clientSecret
-	 * @date    : Mar 30, 2020
+	 * Desc : 엑세스 토큰 반환
+	 * @Company : ©CODEF corp.
+	 * @Author  : notfound404@codef.io
+	 * @Date    : Jun 26, 2020 3:35:47 PM
+	 * @Version : 1.0.1
+	 * @param clientId
+	 * @param clientSecret
+	 * @return
+	 * @throws InterruptedException
 	 */
 	private static String getToken(String clientId, String clientSecret) throws InterruptedException {
 		int i = 0;
@@ -198,12 +209,14 @@ public class EasyCodefConnector {
 	}
 	
 	/**
-	 * Comment  : CODEF 엑세스 토큰 발급 요청
-	 * @version : 1.0.1
-	 * @tags    : @param clientId
-	 * @tags    : @param clientSecret
-	 * @tags    : @return
-	 * @date    : Mar 30, 2020
+	 * Desc : CODEF 엑세스 토큰 발급 요청
+	 * @Company : ©CODEF corp.
+	 * @Author  : notfound404@codef.io
+	 * @Date    : Jun 26, 2020 3:36:01 PM
+	 * @Version : 1.0.1
+	 * @param clientId
+	 * @param clientSecret
+	 * @return
 	 */
 	protected static HashMap<String, Object> requestToken(String clientId, String clientSecret) {
 		BufferedReader br = null;

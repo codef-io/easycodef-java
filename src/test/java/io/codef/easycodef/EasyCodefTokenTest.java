@@ -10,11 +10,16 @@ import org.junit.Test;
 import com.fasterxml.jackson.core.JsonProcessingException;
 
 /**
- * FileName : EasyCodefExample.java
- * Comment  : EasyCodef 토큰 발급 사용예시
- * @version : 1.0.1
- * @author  : notfound404
- * @date    : Jun 25, 2020
+ * <pre>
+ * io.codef.easycodef
+ *   |_ EasyCodefTokenTest.java
+ * </pre>
+ * 
+ * Desc : EasyCodef 토큰 발급 사용예시
+ * @Company : ©CODEF corp.
+ * @Author  : notfound404@codef.io
+ * @Date    : Jun 26, 2020 3:42:31 PM
+ * @Version : 1.0.1
  */
 public class EasyCodefTokenTest {
 
@@ -50,7 +55,7 @@ public class EasyCodefTokenTest {
 		 * #5.코드에프 토큰 발급 요청
 		 * - 서비스타입(0:정식, 1:데모, 2:샌드박스)
 		 */
-		HashMap<String, Object> tokenMap = codef.requestToken(EasyCodefServiceType.DEMO);
+		HashMap<String, Object> tokenMap = codef.requestToken(EasyCodefServiceType.SANDBOX);
 		
 		/**	#6.코드에프 토큰 발급 결과 확인	*/
 		String accessToken = null;

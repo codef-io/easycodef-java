@@ -1,11 +1,16 @@
 package io.codef.easycodef;
 
 /**
- * FileName : EasyCodefExample.java
- * Comment  : EasyCodef 발급 클라이언트 정보 설정 클래스
- * @version : 1.0.1
- * @author  : notfound404
- * @date    : Jun 25, 2020
+ * <pre>
+ * io.codef.easycodef
+ *   |_ EasyCodefClientInfo.java
+ * </pre>
+ * 
+ * Desc : EasyCodef 발급 클라이언트 정보 설정 클래스
+ * @Company : ©CODEF corp.
+ * @Author  : notfound404@codef.io
+ * @Date    : Jun 26, 2020 3:42:11 PM
+ * @Version : 1.0.1
  */
 public class EasyCodefClientInfo {
 

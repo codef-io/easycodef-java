@@ -1,11 +1,16 @@
 package io.codef.easycodef;
 
 /**
- * FileName : EasyCodefProperties.java
- * Comment  : 코드에프의 쉬운 사용을 위한 프로퍼티 클래스 
- * @version : 1.0.1
- * @author  : notfound404
- * @date    : May 21, 2020
+ * <pre>
+ * io.codef.easycodef
+ *   |_ EasyCodefProperties.java
+ * </pre>
+ * 
+ * Desc : 코드에프의 쉬운 사용을 위한 프로퍼티 클래스 
+ * @Company : ©CODEF corp.
+ * @Author  : notfound404@codef.io
+ * @Date    : Jun 26, 2020 3:36:51 PM
+ * @Version : 1.0.1
  */
 public class EasyCodefProperties {
 	
@@ -32,11 +37,13 @@ public class EasyCodefProperties {
 
 	
 	/**
-	 * Comment  : 정식서버 사용을 위한 클라이언트 정보 설정
-	 * @version : 1.0.1
-	 * @tags    : @param realClientId
-	 * @tags    : @param realClientSecret
-	 * @date    : Mar 27, 2020
+	 * Desc : 정식서버 사용을 위한 클라이언트 정보 설정
+	 * @Company : ©CODEF corp.
+	 * @Author  : notfound404@codef.io
+	 * @Date    : Jun 26, 2020 3:37:02 PM
+	 * @Version : 1.0.1
+	 * @param clientId
+	 * @param clientSecret
 	 */
 	public void setClientInfo(String clientId, String clientSecret) {
 		this.clientId = clientId;
@@ -44,11 +51,13 @@ public class EasyCodefProperties {
 	}
 	
 	/**
-	 * Comment  : 데모서버 사용을 위한 클라이언트 정보 설정
-	 * @version : 1.0.1
-	 * @tags    : @param demoClientId
-	 * @tags    : @param demoClientSecret
-	 * @date    : Mar 27, 2020
+	 * Desc : 데모서버 사용을 위한 클라이언트 정보 설정
+	 * @Company : ©CODEF corp.
+	 * @Author  : notfound404@codef.io
+	 * @Date    : Jun 26, 2020 3:37:10 PM
+	 * @Version : 1.0.1
+	 * @param demoClientId
+	 * @param demoClientSecret
 	 */
 	public void setClientInfoForDemo(String demoClientId, String demoClientSecret) {
 		this.demoClientId = demoClientId;
@@ -56,100 +65,120 @@ public class EasyCodefProperties {
 	}
 	
 	/**
-	 * Comment  : 데모 클라이언트 아이디 반환
-	 * @version : 1.0.1
-	 * @tags    : @return
-	 * @date    : May 21, 2020
+	 * Desc : 데모 클라이언트 아이디 반환
+	 * @Company : ©CODEF corp.
+	 * @Author  : notfound404@codef.io
+	 * @Date    : Jun 26, 2020 3:37:17 PM
+	 * @Version : 1.0.1
+	 * @return
 	 */
 	public String getDemoClientId() {
 		return demoClientId;
 	}
 
 	/**
-	 * Comment  : 데모 클라이언트 시크릿 반환
-	 * @version : 1.0.1
-	 * @tags    : @return
-	 * @date    : May 21, 2020
+	 * Desc : 데모 클라이언트 시크릿 반환
+	 * @Company : ©CODEF corp.
+	 * @Author  : notfound404@codef.io
+	 * @Date    : Jun 26, 2020 3:37:23 PM
+	 * @Version : 1.0.1
+	 * @return
 	 */
 	public String getDemoClientSecret() {
 		return demoClientSecret;
 	}
 
 	/**
-	 * Comment  : 데모 접속 토큰 반환
-	 * @version : 1.0.1
-	 * @tags    : @return
-	 * @date    : May 21, 2020
+	 * Desc : 데모 접속 토큰 반환
+	 * @Company : ©CODEF corp.
+	 * @Author  : notfound404@codef.io
+	 * @Date    : Jun 26, 2020 3:37:30 PM
+	 * @Version : 1.0.1
+	 * @return
 	 */
 	public String getDemoAccessToken() {
 		return demoAccessToken;
 	}
 
 	/**
-	 * Comment  : 데모 클라이언트 시크릿 반환
-	 * @version : 1.0.1
-	 * @tags    : @return
-	 * @date    : May 21, 2020
+	 * Desc : 데모 클라이언트 시크릿 반환
+	 * @Company : ©CODEF corp.
+	 * @Author  : notfound404@codef.io
+	 * @Date    : Jun 26, 2020 3:37:36 PM
+	 * @Version : 1.0.1
+	 * @return
 	 */
 	public String getClientId() {
 		return clientId;
 	}
 
 	/**
-	 * Comment  : API 클라이언트 시크릿 반환
-	 * @version : 1.0.1
-	 * @tags    : @return
-	 * @date    : May 21, 2020
+	 * Desc : API 클라이언트 시크릿 반환
+	 * @Company : ©CODEF corp.
+	 * @Author  : notfound404@codef.io
+	 * @Date    : Jun 26, 2020 3:37:44 PM
+	 * @Version : 1.0.1
+	 * @return
 	 */
 	public String getClientSecret() {
 		return clientSecret;
 	}
 
 	/**
-	 * Comment  : API 접속 토큰 반환
-	 * @version : 1.0.1
-	 * @tags    : @return
-	 * @date    : May 21, 2020
+	 * Desc : API 접속 토큰 반환
+	 * @Company : ©CODEF corp.
+	 * @Author  : notfound404@codef.io
+	 * @Date    : Jun 26, 2020 3:37:50 PM
+	 * @Version : 1.0.1
+	 * @return
 	 */
 	public String getAccessToken() {
 		return accessToken;
 	}
 
 	/**
-	 * Comment  : RSA암호화를 위한 퍼블릭키 반환
-	 * @version : 1.0.1
-	 * @tags    : @return
-	 * @date    : May 21, 2020
+	 * Desc : RSA암호화를 위한 퍼블릭키 반환
+	 * @Company : ©CODEF corp.
+	 * @Author  : notfound404@codef.io
+	 * @Date    : Jun 26, 2020 3:37:59 PM
+	 * @Version : 1.0.1
+	 * @return
 	 */
 	public String getPublicKey() {
 		return publicKey;
 	}
 
 	/**
-	 * Comment  : RSA암호화를 위한 퍼블릭키 설정 
-	 * @version : 1.0.1
-	 * @tags    : @param publicKey
-	 * @date    : Mar 27, 2020
+	 * Desc : RSA암호화를 위한 퍼블릭키 설정
+	 * @Company : ©CODEF corp.
+	 * @Author  : notfound404@codef.io
+	 * @Date    : Jun 26, 2020 3:38:07 PM
+	 * @Version : 1.0.1
+	 * @param publicKey
 	 */
 	public void setPublicKey(String publicKey) {
 		this.publicKey = publicKey;
 	}
 
 	/**
-	 * Comment  : 데모 접속 토큰 설정
-	 * @version : 1.0.1
-	 * @tags    : @return
-	 * @date    : May 21, 2020
+	 * Desc : 데모 접속 토큰 설정
+	 * @Company : ©CODEF corp.
+	 * @Author  : notfound404@codef.io
+	 * @Date    : Jun 26, 2020 3:38:14 PM
+	 * @Version : 1.0.1
+	 * @param demoAccessToken
 	 */
 	public void setDemoAccessToken(String demoAccessToken) {
 		this.demoAccessToken = demoAccessToken;
 	}
 
 	/**
-	 * Comment  : API 접속 토큰 설정
-	 * @version : 1.0.1
-	 * @tags    : @return
-	 * @date    : May 21, 2020
+	 * Desc : API 접속 토큰 설정
+	 * @Company : ©CODEF corp.
+	 * @Author  : notfound404@codef.io
+	 * @Date    : Jun 26, 2020 3:38:21 PM
+	 * @Version : 1.0.1
+	 * @param accessToken
 	 */
 	public void setAccessToken(String accessToken) {
 		this.accessToken = accessToken;
