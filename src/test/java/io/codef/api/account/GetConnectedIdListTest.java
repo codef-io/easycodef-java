@@ -1,4 +1,4 @@
-package io.codef.easycodef;
+package io.codef.api.account;
 
 import static org.junit.Assert.assertEquals;
 
@@ -10,23 +10,29 @@ import org.junit.Test;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-/**
- * <pre>
- * io.codef.easycodef
- *   |_ EasyCodefExampleTest.java
- * </pre>
- * 
- * Desc : EasyCodef 사용예시
- * @Company : ©CODEF corp.
- * @Author  : notfound404@codef.io
- * @Date    : Jun 26, 2020 3:42:23 PM
- * @Version : 1.0.1
- */
-public class EasyCodefExampleTest {
+import io.codef.api.EasyCodef;
+import io.codef.api.EasyCodefClientInfo;
+import io.codef.api.EasyCodefServiceType;
 
+/**
+ * FileName : EasyCodefTest.java
+ * Comment  : 쉬운 코드에프 라이브러리 사용 예제 - 사용자 계정 관리
+ * @version : 1.0.1
+ * @author  : notfound404
+ * @date    : Mar 30, 2020
+ */
+public class GetConnectedIdListTest {
+	/**
+	 * Comment  : 쉬운 코드에프 connectedId 목록 샘플
+	 * @version : 1.0.1
+	 * @throws InterruptedException 
+	 * @tags    : @throws UnsupportedEncodingException
+	 * @tags    : @throws JsonProcessingException
+	 * @date    : Mar 31, 2020
+	 */
 	@SuppressWarnings("unchecked")
 	@Test
-	public void usageExample() throws UnsupportedEncodingException, JsonProcessingException, InterruptedException {
+	public void connectedIdList() throws UnsupportedEncodingException, JsonProcessingException, InterruptedException {
 		/**	
 		 * #1.쉬운 코드에프 객체 생성
 		 */
@@ -53,25 +59,12 @@ public class EasyCodefExampleTest {
 		 */
 		codef.setPublicKey(EasyCodefClientInfo.PUBLIC_KEY);
 		
-		/**	
-		 * #5.요청 파라미터 설정
-		 * - 각 상품별 파라미터를 설정(https://developer.codef.io/products)	
-		 */
-		HashMap<String, Object> parameterMap = new HashMap<String, Object>();
-		parameterMap.put("connectedId", "sandbox_connectedId_01");
-		parameterMap.put("organization", "0301");
-		parameterMap.put("identity", "1234567890");	
+		/**	#5.요청	*/
+		String result = codef.getConnectedIdList(EasyCodefServiceType.SANDBOX);
 		
-		/**	
-		 * #6.코드에프 정보 조회 요청
-		 * - 서비스타입(0:정식, 1:데모, 2:샌드박스)
-		 */
-		String productUrl = "/v1/kr/card/b/account/card-list";	// (예시)법인 보유카드 조회 URL
-		String result = codef.requestProduct(productUrl, EasyCodefServiceType.SANDBOX, parameterMap);
-		
-		/**	#7.코드에프 정보 결과 확인	*/
+		/**	#6.결과 확인	*/
 		System.out.println(result);
-		
+
 		HashMap<String, Object> responseMap = new ObjectMapper().readValue(result, HashMap.class);
 		HashMap<String, Object> resultMap = (HashMap<String, Object>)responseMap.get("result");
 		

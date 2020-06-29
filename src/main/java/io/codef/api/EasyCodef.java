@@ -1,4 +1,4 @@
-package io.codef.easycodef;
+package io.codef.api;
 
 import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
@@ -255,7 +255,7 @@ public class EasyCodef {
 	 * @return
 	 */
 	private boolean checkTwoWayKeyword(HashMap<String, Object> parameterMap) {
-		if(parameterMap.containsKey("is2Way") || parameterMap.containsKey("twoWayInfo")) {
+		if(parameterMap != null && (parameterMap.containsKey("is2Way") || parameterMap.containsKey("twoWayInfo"))) {
 			return false;
 		}
 		

@@ -1,6 +1,6 @@
-package io.codef.easycodef;
+package io.codef.api;
 
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertEquals;
 
 import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
@@ -8,21 +8,26 @@ import java.util.HashMap;
 import org.junit.Test;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import io.codef.api.EasyCodef;
+import io.codef.api.EasyCodefServiceType;
 
 /**
  * <pre>
  * io.codef.easycodef
- *   |_ EasyCodefTokenTest.java
+ *   |_ EasyCodefExampleTest.java
  * </pre>
  * 
- * Desc : EasyCodef 토큰 발급 사용예시
+ * Desc : EasyCodef 사용예시
  * @Company : ©CODEF corp.
  * @Author  : notfound404@codef.io
- * @Date    : Jun 26, 2020 3:42:31 PM
+ * @Date    : Jun 26, 2020 3:42:23 PM
  * @Version : 1.0.1
  */
-public class EasyCodefTokenTest {
+public class EasyCodefExampleTest {
 
+	@SuppressWarnings("unchecked")
 	@Test
 	public void usageExample() throws UnsupportedEncodingException, JsonProcessingException, InterruptedException {
 		/**	
@@ -52,20 +57,27 @@ public class EasyCodefTokenTest {
 		codef.setPublicKey(EasyCodefClientInfo.PUBLIC_KEY);
 		
 		/**	
-		 * #5.코드에프 토큰 발급 요청
+		 * #5.요청 파라미터 설정
+		 * - 각 상품별 파라미터를 설정(https://developer.codef.io/products)	
+		 */
+		HashMap<String, Object> parameterMap = new HashMap<String, Object>();
+		parameterMap.put("connectedId", "sandbox_connectedId_01");
+		parameterMap.put("organization", "0301");
+		parameterMap.put("identity", "1234567890");	
+		
+		/**	
+		 * #6.코드에프 정보 조회 요청
 		 * - 서비스타입(0:정식, 1:데모, 2:샌드박스)
 		 */
-		HashMap<String, Object> tokenMap = codef.requestToken(EasyCodefServiceType.SANDBOX);
+		String productUrl = "/v1/kr/card/b/account/card-list";	// (예시)법인 보유카드 조회 URL
+		String result = codef.requestProduct(productUrl, EasyCodefServiceType.SANDBOX, parameterMap);
 		
-		/**	#6.코드에프 토큰 발급 결과 확인	*/
-		String accessToken = null;
-		try {
-			accessToken = (String)tokenMap.get("access_token");
-			System.out.println(tokenMap.get("access_token"));
-		} catch (Exception e) {
-			e.printStackTrace();
-		} 
+		/**	#7.코드에프 정보 결과 확인	*/
+		System.out.println(result);
 		
-		assertNotNull("엑세스 토큰 발급 실패(클라이언트 정보(EasyCodefClientInfo)가 올바르게 설정되었는지 확인 필요)", accessToken);
+		HashMap<String, Object> responseMap = new ObjectMapper().readValue(result, HashMap.class);
+		HashMap<String, Object> resultMap = (HashMap<String, Object>)responseMap.get("result");
+		
+		assertEquals("코드에프 상품 요청 결과 실패(반환된 코드와 메시지 확인 필요)", "CF-00000", (String)resultMap.get("code"));
 	}
 }

@@ -1,4 +1,4 @@
-package io.codef.easycodef;
+package io.codef.api;
 
 import java.util.HashMap;
 import java.util.List;
