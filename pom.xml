@@ -6,7 +6,7 @@
 
 	<groupId>io.codef.api</groupId>
 	<artifactId>easycodef-java</artifactId>
-	<version>1.0.1-SNAPSHOT</version>
+	<version>1.0.1</version>
 	<packaging>jar</packaging>
 
 	<name>easycodef</name>
@@ -33,14 +33,16 @@
 	</scm>
 
 	<distributionManagement>
+		<!-- ossrh -->
 		<snapshotRepository>
-            <id>ossrh</id>
-            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-        </snapshotRepository>
-        <repository>
-            <id>ossrh</id>
-            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-        </repository>
+			<id>ossrh</id>
+			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+		</snapshotRepository>
+		<repository>
+			<id>ossrh</id>
+			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+		</repository>
+
 	</distributionManagement>
 
 	<issueManagement>
@@ -51,10 +53,20 @@
 	<properties>
 		<java.version>1.8</java.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<bintray.repo>codef-io-dev/easycodef</bintray.repo>
-		<bintray.package>easycodef-java</bintray.package>
+		<additionalparam>-Xdoclint:none</additionalparam>
 	</properties>
 
+	<profiles>
+		<profile>
+			<id>Java8-doclint-disable</id>
+			<activation>
+				<jdk>[1.8,)</jdk>
+			</activation>
+			<properties>
+				<javadoc.opts>-Xdoclint:none</javadoc.opts>
+			</properties>
+		</profile>
+	</profiles>
 
 	<build>
 		<plugins>
@@ -73,6 +85,38 @@
 
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>3.2.0</version>
+				<executions>
+					<execution>
+						<id>attach-javadocs</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+						<configuration>
+							<additionalparam>${javadoc.opts}</additionalparam>
+							<failOnError>false</failOnError>
+							<tags>
+								<tag>
+									<name>Company</name>
+								</tag>
+								<tag>
+									<name>Author</name>
+								</tag>
+								<tag>
+									<name>Date</name>
+								</tag>
+								<tag>
+									<name>Version</name>
+								</tag>
+							</tags>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-source-plugin</artifactId>
 				<version>3.2.1</version>
 				<executions>
@@ -85,7 +129,7 @@
 					</execution>
 				</executions>
 			</plugin>
-			
+
 			<!-- GPG sign -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
