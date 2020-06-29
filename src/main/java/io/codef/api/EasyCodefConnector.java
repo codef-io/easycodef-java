@@ -27,7 +27,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  * @Company : ©CODEF corp.
  * @Author  : notfound404@codef.io
  * @Date    : Jun 26, 2020 3:35:17 PM
- * @Version : 1.0.1
  */
 public class EasyCodefConnector {
 	private static ObjectMapper mapper = new ObjectMapper();
@@ -38,7 +37,6 @@ public class EasyCodefConnector {
 	 * @Company : ©CODEF corp.
 	 * @Author  : notfound404@codef.io
 	 * @Date    : Jun 26, 2020 3:35:26 PM
-	 * @Version : 1.0.1
 	 * @param urlPath
 	 * @param serviceType
 	 * @param bodyMap
@@ -102,7 +100,6 @@ public class EasyCodefConnector {
 	 * @Company : ©CODEF corp.
 	 * @Author  : notfound404@codef.io
 	 * @Date    : Jun 26, 2020 3:35:34 PM
-	 * @Version : 1.0.1
 	 * @param urlPath
 	 * @param token
 	 * @param bodyString
@@ -178,7 +175,6 @@ public class EasyCodefConnector {
 	 * @Company : ©CODEF corp.
 	 * @Author  : notfound404@codef.io
 	 * @Date    : Jun 26, 2020 3:35:47 PM
-	 * @Version : 1.0.1
 	 * @param clientId
 	 * @param clientSecret
 	 * @return
@@ -213,7 +209,6 @@ public class EasyCodefConnector {
 	 * @Company : ©CODEF corp.
 	 * @Author  : notfound404@codef.io
 	 * @Date    : Jun 26, 2020 3:36:01 PM
-	 * @Version : 1.0.1
 	 * @param clientId
 	 * @param clientSecret
 	 * @return

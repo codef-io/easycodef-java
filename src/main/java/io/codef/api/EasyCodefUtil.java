@@ -27,7 +27,6 @@ import org.apache.commons.io.FileUtils;
  * @Company : ©CODEF corp.
  * @Author  : notfound404@codef.io
  * @Date    : Jun 26, 2020 3:41:39 PM
- * @Version : 1.0.1
  */
 public class EasyCodefUtil {
 
@@ -36,7 +35,6 @@ public class EasyCodefUtil {
 	 * @Company : ©CODEF corp.
 	 * @Author  : notfound404@codef.io
 	 * @Date    : Jun 26, 2020 3:41:50 PM
-	 * @Version : 1.0.1
 	 * @param plainText
 	 * @param publicKey
 	 * @return
@@ -65,7 +63,6 @@ public class EasyCodefUtil {
 	 * @Company : ©CODEF corp.
 	 * @Author  : notfound404@codef.io
 	 * @Date    : Jun 26, 2020 3:41:58 PM
-	 * @Version : 1.0.1
 	 * @param filePath
 	 * @return
 	 * @throws IOException

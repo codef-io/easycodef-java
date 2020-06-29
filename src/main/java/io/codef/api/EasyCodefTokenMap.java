@@ -12,7 +12,6 @@ import java.util.HashMap;
  * @Company : ©CODEF corp.
  * @Author  : notfound404@codef.io
  * @Date    : Jun 26, 2020 3:41:13 PM
- * @Version : 1.0.1
  */
 public class EasyCodefTokenMap {
 	
@@ -24,7 +23,6 @@ public class EasyCodefTokenMap {
 	 * @Company : ©CODEF corp.
 	 * @Author  : notfound404@codef.io
 	 * @Date    : Jun 26, 2020 3:41:21 PM
-	 * @Version : 1.0.1
 	 * @param clientId
 	 * @param accessToken
 	 */
@@ -37,7 +35,6 @@ public class EasyCodefTokenMap {
 	 * @Company : ©CODEF corp.
 	 * @Author  : notfound404@codef.io
 	 * @Date    : Jun 26, 2020 3:41:28 PM
-	 * @Version : 1.0.1
 	 * @param clientId
 	 * @return
 	 */

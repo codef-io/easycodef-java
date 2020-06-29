@@ -13,7 +13,6 @@ import java.util.List;
  * @Company : ©CODEF corp.
  * @Author  : notfound404@codef.io
  * @Date    : Jun 26, 2020 3:38:30 PM
- * @Version : 1.0.1
  */
 public class EasyCodefResponse extends HashMap<String, Object>{
 	
@@ -27,7 +26,6 @@ public class EasyCodefResponse extends HashMap<String, Object>{
 	 * @Company : ©CODEF corp.
 	 * @Author  : notfound404@codef.io
 	 * @Date    : Jun 26, 2020 3:38:37 PM
-	 * @Version : 1.0.1
 	 */
 	protected EasyCodefResponse() {
 		result = new HashMap<String,Object>();
@@ -44,7 +42,6 @@ public class EasyCodefResponse extends HashMap<String, Object>{
 	 * @Company : ©CODEF corp.
 	 * @Author  : notfound404@codef.io
 	 * @Date    : Jun 26, 2020 3:39:55 PM
-	 * @Version : 1.0.1
 	 * @param map
 	 */
 	@SuppressWarnings("unchecked")
@@ -65,7 +62,6 @@ public class EasyCodefResponse extends HashMap<String, Object>{
 	 * @Company : ©CODEF corp.
 	 * @Author  : notfound404@codef.io
 	 * @Date    : Jun 26, 2020 3:40:00 PM
-	 * @Version : 1.0.1
 	 * @param message
 	 */
 	protected EasyCodefResponse(EasyCodefMessageConstant message) {
@@ -83,7 +79,6 @@ public class EasyCodefResponse extends HashMap<String, Object>{
 	 * @Company : ©CODEF corp.
 	 * @Author  : notfound404@codef.io
 	 * @Date    : Jun 26, 2020 3:40:06 PM
-	 * @Version : 1.0.1
 	 * @param message
 	 * @param extraMessage
 	 */
@@ -103,7 +98,6 @@ public class EasyCodefResponse extends HashMap<String, Object>{
 	 * @Company : ©CODEF corp.
 	 * @Author  : notfound404@codef.io
 	 * @Date    : Jun 26, 2020 3:40:12 PM
-	 * @Version : 1.0.1
 	 * @param errCode
 	 * @param errMsg
 	 * @param extraMsg
@@ -119,7 +113,6 @@ public class EasyCodefResponse extends HashMap<String, Object>{
 	 * @Company : ©CODEF corp.
 	 * @Author  : notfound404@codef.io
 	 * @Date    : Jun 26, 2020 3:40:18 PM
-	 * @Version : 1.0.1
 	 * @param message
 	 */
 	protected void setResultMessage(EasyCodefMessageConstant message) {
@@ -135,7 +128,6 @@ public class EasyCodefResponse extends HashMap<String, Object>{
 	 * @Company : ©CODEF corp.
 	 * @Author  : notfound404@codef.io
 	 * @Date    : Jun 26, 2020 3:40:26 PM
-	 * @Version : 1.0.1
 	 * @return
 	 */
 	@Override

@@ -16,7 +16,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  * @Company : ©CODEF corp.
  * @Author  : notfound404@codef.io
  * @Date    : Jun 26, 2020 3:28:31 PM
- * @Version : 1.0.1
  */
 public class EasyCodef {
 	
@@ -32,7 +31,6 @@ public class EasyCodef {
 	 * @Company : ©CODEF corp.
 	 * @Author  : notfound404@codef.io
 	 * @Date    : Jun 26, 2020 3:30:59 PM
-	 * @Version : 1.0.1
 	 * @param clientId
 	 * @param clientSecret
 	 */
@@ -45,7 +43,6 @@ public class EasyCodef {
 	 * @Company : ©CODEF corp.
 	 * @Author  : notfound404@codef.io
 	 * @Date    : Jun 26, 2020 3:31:12 PM
-	 * @Version : 1.0.1
 	 * @param demoClientId
 	 * @param demoClientSecret
 	 */
@@ -58,7 +55,6 @@ public class EasyCodef {
 	 * @Company : ©CODEF corp.
 	 * @Author  : notfound404@codef.io
 	 * @Date    : Jun 26, 2020 3:31:24 PM
-	 * @Version : 1.0.1
 	 * @param publicKey
 	 */
 	public void setPublicKey(String publicKey) {
@@ -70,7 +66,6 @@ public class EasyCodef {
 	 * @Company : ©CODEF corp.
 	 * @Author  : notfound404@codef.io
 	 * @Date    : Jun 26, 2020 3:32:25 PM
-	 * @Version : 1.0.1
 	 * @return
 	 */
 	public String getPublicKey() {
@@ -82,7 +77,6 @@ public class EasyCodef {
 	 * @Company : ©CODEF corp.
 	 * @Author  : notfound404@codef.io
 	 * @Date    : Jun 26, 2020 3:32:31 PM
-	 * @Version : 1.0.1
 	 * @param productUrl
 	 * @param serviceType
 	 * @param parameterMap
@@ -127,7 +121,6 @@ public class EasyCodef {
 	 * @Company : ©CODEF corp.
 	 * @Author  : notfound404@codef.io
 	 * @Date    : Jun 26, 2020 3:32:41 PM
-	 * @Version : 1.0.1
 	 * @param productUrl
 	 * @param serviceType
 	 * @param parameterMap
@@ -173,7 +166,6 @@ public class EasyCodef {
 	 * @Company : ©CODEF corp.
 	 * @Author  : notfound404@codef.io
 	 * @Date    : Jun 26, 2020 3:33:23 PM
-	 * @Version : 1.0.1
 	 * @param serviceType
 	 * @return
 	 */
@@ -208,7 +200,6 @@ public class EasyCodef {
 	 * @Company : ©CODEF corp.
 	 * @Author  : notfound404@codef.io
 	 * @Date    : Jun 26, 2020 3:33:31 PM
-	 * @Version : 1.0.1
 	 * @return
 	 */
 	private boolean checkPublicKey() {
@@ -223,7 +214,6 @@ public class EasyCodef {
 	 * @Company : ©CODEF corp.
 	 * @Author  : notfound404@codef.io
 	 * @Date    : Jun 26, 2020 3:33:39 PM
-	 * @Version : 1.0.1
 	 * @param parameterMap
 	 * @return
 	 */
@@ -250,7 +240,6 @@ public class EasyCodef {
 	 * @Company : ©CODEF corp.
 	 * @Author  : notfound404@codef.io
 	 * @Date    : Jun 26, 2020 3:33:45 PM
-	 * @Version : 1.0.1
 	 * @param parameterMap
 	 * @return
 	 */
@@ -268,7 +257,6 @@ public class EasyCodef {
 	 * @Company : ©CODEF corp.
 	 * @Author  : notfound404@codef.io
 	 * @Date    : Jun 26, 2020 3:34:02 PM
-	 * @Version : 1.0.1
 	 * @param serviceType
 	 * @param parameterMap
 	 * @return
@@ -285,7 +273,6 @@ public class EasyCodef {
 	 * @Company : ©CODEF corp.
 	 * @Author  : notfound404@codef.io
 	 * @Date    : Jun 26, 2020 3:34:11 PM
-	 * @Version : 1.0.1
 	 * @param serviceType
 	 * @param parameterMap
 	 * @return
@@ -302,7 +289,6 @@ public class EasyCodef {
 	 * @Company : ©CODEF corp.
 	 * @Author  : notfound404@codef.io
 	 * @Date    : Jun 26, 2020 3:34:21 PM
-	 * @Version : 1.0.1
 	 * @param serviceType
 	 * @param parameterMap
 	 * @return
@@ -319,7 +305,6 @@ public class EasyCodef {
 	 * @Company : ©CODEF corp.
 	 * @Author  : notfound404@codef.io
 	 * @Date    : Jun 26, 2020 3:34:30 PM
-	 * @Version : 1.0.1
 	 * @param serviceType
 	 * @param parameterMap
 	 * @return
@@ -336,7 +321,6 @@ public class EasyCodef {
 	 * @Company : ©CODEF corp.
 	 * @Author  : notfound404@codef.io
 	 * @Date    : Jun 26, 2020 3:34:37 PM
-	 * @Version : 1.0.1
 	 * @param serviceType
 	 * @param parameterMap
 	 * @return
@@ -353,7 +337,6 @@ public class EasyCodef {
 	 * @Company : ©CODEF corp.
 	 * @Author  : notfound404@codef.io
 	 * @Date    : Jun 26, 2020 3:34:44 PM
-	 * @Version : 1.0.1
 	 * @param serviceType
 	 * @return
 	 * @throws UnsupportedEncodingException
@@ -369,7 +352,6 @@ public class EasyCodef {
 	 * @Company : ©CODEF corp.
 	 * @Author  : notfound404@codef.io
 	 * @Date    : Jun 26, 2020 3:35:03 PM
-	 * @Version : 1.0.1
 	 * @param serviceType
 	 * @return
 	 */

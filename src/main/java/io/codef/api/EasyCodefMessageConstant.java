@@ -10,7 +10,6 @@ package io.codef.api;
  * @Company : ©CODEF corp.
  * @Author  : notfound404@codef.io
  * @Date    : Jun 26, 2020 3:36:41 PM
- * @Version : 1.0.1
  */
 public enum EasyCodefMessageConstant {
 

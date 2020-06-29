@@ -10,7 +10,6 @@ package io.codef.api;
  * @Company : ©CODEF corp.
  * @Author  : notfound404@codef.io
  * @Date    : Jun 26, 2020 3:36:51 PM
- * @Version : 1.0.1
  */
 public class EasyCodefProperties {
 	
@@ -41,7 +40,6 @@ public class EasyCodefProperties {
 	 * @Company : ©CODEF corp.
 	 * @Author  : notfound404@codef.io
 	 * @Date    : Jun 26, 2020 3:37:02 PM
-	 * @Version : 1.0.1
 	 * @param clientId
 	 * @param clientSecret
 	 */
@@ -55,7 +53,6 @@ public class EasyCodefProperties {
 	 * @Company : ©CODEF corp.
 	 * @Author  : notfound404@codef.io
 	 * @Date    : Jun 26, 2020 3:37:10 PM
-	 * @Version : 1.0.1
 	 * @param demoClientId
 	 * @param demoClientSecret
 	 */
@@ -69,7 +66,6 @@ public class EasyCodefProperties {
 	 * @Company : ©CODEF corp.
 	 * @Author  : notfound404@codef.io
 	 * @Date    : Jun 26, 2020 3:37:17 PM
-	 * @Version : 1.0.1
 	 * @return
 	 */
 	public String getDemoClientId() {
@@ -81,7 +77,6 @@ public class EasyCodefProperties {
 	 * @Company : ©CODEF corp.
 	 * @Author  : notfound404@codef.io
 	 * @Date    : Jun 26, 2020 3:37:23 PM
-	 * @Version : 1.0.1
 	 * @return
 	 */
 	public String getDemoClientSecret() {
@@ -93,7 +88,6 @@ public class EasyCodefProperties {
 	 * @Company : ©CODEF corp.
 	 * @Author  : notfound404@codef.io
 	 * @Date    : Jun 26, 2020 3:37:30 PM
-	 * @Version : 1.0.1
 	 * @return
 	 */
 	public String getDemoAccessToken() {
@@ -117,7 +111,6 @@ public class EasyCodefProperties {
 	 * @Company : ©CODEF corp.
 	 * @Author  : notfound404@codef.io
 	 * @Date    : Jun 26, 2020 3:37:44 PM
-	 * @Version : 1.0.1
 	 * @return
 	 */
 	public String getClientSecret() {
@@ -141,7 +134,6 @@ public class EasyCodefProperties {
 	 * @Company : ©CODEF corp.
 	 * @Author  : notfound404@codef.io
 	 * @Date    : Jun 26, 2020 3:37:59 PM
-	 * @Version : 1.0.1
 	 * @return
 	 */
 	public String getPublicKey() {
@@ -165,7 +157,6 @@ public class EasyCodefProperties {
 	 * @Company : ©CODEF corp.
 	 * @Author  : notfound404@codef.io
 	 * @Date    : Jun 26, 2020 3:38:14 PM
-	 * @Version : 1.0.1
 	 * @param demoAccessToken
 	 */
 	public void setDemoAccessToken(String demoAccessToken) {
@@ -177,7 +168,6 @@ public class EasyCodefProperties {
 	 * @Company : ©CODEF corp.
 	 * @Author  : notfound404@codef.io
 	 * @Date    : Jun 26, 2020 3:38:21 PM
-	 * @Version : 1.0.1
 	 * @param accessToken
 	 */
 	public void setAccessToken(String accessToken) {
