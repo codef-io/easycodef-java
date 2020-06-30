@@ -6,7 +6,7 @@
 
 	<groupId>io.codef.api</groupId>
 	<artifactId>easycodef-java</artifactId>
-	<version>1.0.2</version>
+	<version>1.0.3</version>
 	<packaging>jar</packaging>
    
 	<name>easycodef</name>
