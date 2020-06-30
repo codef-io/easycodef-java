@@ -24,7 +24,7 @@ public class EasyCodefClientInfo {
 	public static final String CLIENT_ID = "코드에프 데모 서비스 신청 후 발급 받은 정식버전 클라이언트 아이디 설정";
 	public static final String CLIENT_SECRET = "코드에프 데모 서비스 신청 후 발급 받은 정식버전 클라이언트 아이디 설정";
 	
-	/**  코드에프 가입을 통해 발급 받은 RSA 공개키 정보 설정 */
+	/**  임시로 설정된 PUBLIC_KEY를 제거하고 코드에프 가입을 통해 발급 받은 본인 계정의 RSA 공개키 정보 설정 필요. */
 	public static final String PUBLIC_KEY = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAhlfj2lXaCwOf9rSjEk+K8zQ0tCarc3Q2U/XzelrXynlg6S8oG7Juby4Y+xENX/JkgliPKU9vady+IUVCvXMESXRmJ5C7uey9zrHTJMmpArD0BbEg81HNStE+AdxKn7xqSu0K3+tg6RKN2ijvXtugjfxhJBok7vVHsMxfk7UTOVLNgzXEpHtploF/7ppvsGPHbuJYGceJqGKVJDPOxB+erOVVQx5/35eAALAcKasSBFFzIszJHZCcmTYEGrckD7JxrYWzR91oHkwLBAo+qHRRKfovGxCWqLRcMr4AyrBRXDK/Fi/4F5ARf+w/Qf4I4XxkQlqewuBRVEPaHO4y16PPTQIDAQAB";
 	
 }

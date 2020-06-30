@@ -348,20 +348,41 @@ public class EasyCodef {
 	}
 	
 	/**
-	 * Desc : 토큰 발급 요청
+	 * Desc : 토큰 반환 요청. 보유 중인 토큰이 있는 경우 반환, 없는 경우 발급 후 반환
 	 * @Company : ©CODEF corp.
 	 * @Author  : notfound404@codef.io
 	 * @Date    : Jun 26, 2020 3:35:03 PM
 	 * @param serviceType
 	 * @return
 	 */
-	public HashMap<String, Object> requestToken(EasyCodefServiceType serviceType){
+	public String requestToken(EasyCodefServiceType serviceType) {
+		String clientId = null;
+		String clientSecret = null;
+		
 		if(serviceType.getServiceType() == 0) {
-			return EasyCodefConnector.requestToken(properties.getClientId(), properties.getClientSecret());
+			clientId = properties.getClientId();
+			clientSecret = properties.getClientSecret();
 		} else if(serviceType.getServiceType() == 1) {
-			return EasyCodefConnector.requestToken(properties.getDemoClientId(), properties.getDemoClientSecret());
+			clientId = properties.getClientId();
+			clientSecret = properties.getClientSecret();
 		} else {
-			return EasyCodefConnector.requestToken(EasyCodefConstant.SANDBOX_CLIENT_ID, EasyCodefConstant.SANDBOX_CLIENT_SECRET);
+			clientId = EasyCodefConstant.SANDBOX_CLIENT_ID;
+			clientSecret = EasyCodefConstant.SANDBOX_CLIENT_SECRET;
 		}
+		
+		String accessToken = EasyCodefTokenMap.getToken(clientId); // 보유 중인 토큰이 있는 경우 반환
+		if(accessToken != null) {
+			return accessToken;
+		}
+		
+		HashMap<String, Object> tokenMap = EasyCodefConnector.requestToken(clientId, clientSecret);	// 보유 중인 토큰이 없는 경우 발급 후 반환
+		if(tokenMap != null) {
+			accessToken = (String)tokenMap.get("access_token");
+			EasyCodefTokenMap.setToken(clientId, accessToken);	// 발급 토큰 저장
+			return accessToken;
+		} else {
+			return null;
+		}
+		
 	}
 }

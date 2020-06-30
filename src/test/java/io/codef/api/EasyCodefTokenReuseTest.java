@@ -1,6 +1,6 @@
 package io.codef.api;
 
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertEquals;
 
 import java.io.UnsupportedEncodingException;
 
@@ -14,16 +14,31 @@ import com.fasterxml.jackson.core.JsonProcessingException;
  *   |_ EasyCodefTokenTest.java
  * </pre>
  * 
- * Desc : EasyCodef 토큰 발급 사용예시
+ * Desc : EasyCodef 토큰 재사용 테스트
  * @Company : ©CODEF corp.
  * @Author  : notfound404@codef.io
  * @Date    : Jun 26, 2020 3:42:31 PM
  * @Version : 1.0.1
  */
-public class EasyCodefTokenTest {
-
+public class EasyCodefTokenReuseTest {
+	
 	@Test
-	public void usageExample() throws UnsupportedEncodingException, JsonProcessingException, InterruptedException {
+	public void reuse() throws UnsupportedEncodingException, JsonProcessingException, InterruptedException {
+		
+		String accessToken1 = usageExample(EasyCodefServiceType.SANDBOX);
+		String accessToken2 = usageExample(EasyCodefServiceType.SANDBOX);
+		assertEquals("토큰 재사용 실패", accessToken1, accessToken2);
+
+		accessToken1 = usageExample(EasyCodefServiceType.DEMO);
+		accessToken2 = usageExample(EasyCodefServiceType.DEMO);
+		assertEquals("토큰 재사용 실패", accessToken1, accessToken2);
+		
+		accessToken1 = usageExample(EasyCodefServiceType.API);
+		accessToken2 = usageExample(EasyCodefServiceType.API);
+		assertEquals("토큰 재사용 실패", accessToken1, accessToken2);
+	}
+
+	public String usageExample(EasyCodefServiceType type) throws UnsupportedEncodingException, JsonProcessingException, InterruptedException {
 		/**	
 		 * #1.쉬운 코드에프 객체 생성
 		 */
@@ -54,10 +69,9 @@ public class EasyCodefTokenTest {
 		 * #5.코드에프 토큰 발급 요청
 		 * - 서비스타입(0:정식, 1:데모, 2:샌드박스)
 		 */
-		String accessToken = codef.requestToken(EasyCodefServiceType.SANDBOX);
+		String accessToken = codef.requestToken(type);
 		System.out.println(accessToken);
 		 
-		
-		assertNotNull("엑세스 토큰 발급 실패(클라이언트 정보(EasyCodefClientInfo)가 올바르게 설정되었는지 확인 필요)", accessToken);
+		return accessToken;
 	}
 }
