@@ -62,14 +62,15 @@ public class EasyCodefExampleTest {
 		 */
 		HashMap<String, Object> parameterMap = new HashMap<String, Object>();
 		parameterMap.put("connectedId", "sandbox_connectedId_01");
-		parameterMap.put("organization", "0301");
-		parameterMap.put("identity", "1234567890");	
+		parameterMap.put("organization", "0309");
+		parameterMap.put("birthDate", "");	
+		parameterMap.put("inquiryType", "0");	
 		
 		/**	
 		 * #6.코드에프 정보 조회 요청
-		 * - 서비스타입(0:정식, 1:데모, 2:샌드박스)
+		 * - 서비스타입(API:정식, DEMO:데모, SANDBOX:샌드박스)
 		 */
-		String productUrl = "/v1/kr/card/b/account/card-list";	// (예시)법인 보유카드 조회 URL
+		String productUrl = "/v1/kr/card/p/account/card-list";	// (예시)개인 보유카드 조회 URL
 		String result = codef.requestProduct(productUrl, EasyCodefServiceType.SANDBOX, parameterMap);
 		
 		/**	#7.코드에프 정보 결과 확인	*/

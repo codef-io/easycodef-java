@@ -67,7 +67,7 @@ public class EasyCodefTokenReuseTest {
 		
 		/**	
 		 * #5.코드에프 토큰 발급 요청
-		 * - 서비스타입(0:정식, 1:데모, 2:샌드박스)
+		 * - 서비스타입(API:정식, DEMO:데모, SANDBOX:샌드박스)
 		 */
 		String accessToken = codef.requestToken(type);
 		System.out.println(accessToken);

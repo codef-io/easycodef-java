@@ -69,9 +69,9 @@ public class DeleteAccountTest {
 		List<HashMap<String, Object>>  accountList = new ArrayList<HashMap<String, Object>> ();
 		HashMap<String, Object> accountMap = new HashMap<String, Object>();
 		accountMap.put("countryCode",	"KR");
-		accountMap.put("businessType",	"BK");
+		accountMap.put("businessType",	"CD");
 		accountMap.put("clientType",  	"P");
-		accountMap.put("organization",	"0020");
+		accountMap.put("organization",	"0309");
 		accountMap.put("loginType",  	"1");
 		
 		accountList.add(accountMap);

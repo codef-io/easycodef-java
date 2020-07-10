@@ -1,47 +1,34 @@
-package io.codef.api.account;
+package io.codef.api;
 
 import static org.junit.Assert.assertEquals;
 
-import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 import org.junit.Test;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
-import io.codef.api.EasyCodef;
-import io.codef.api.EasyCodefClientInfo;
-import io.codef.api.EasyCodefServiceType;
-import io.codef.api.EasyCodefUtil;
 
 /**
  * <pre>
- * io.codef.api.account
- *   |_ AddAccountTest.java
+ * io.codef.easycodef
+ *   |_ EasyCodefExampleTest.java
  * </pre>
  * 
- * Desc : 쉬운 코드에프 라이브러리 사용 예제 - 사용자 계정 관리
+ * Desc : EasyCodef 사용예시
  * @Company : ©CODEF corp.
  * @Author  : notfound404@codef.io
- * @Date    : Jun 29, 2020 3:35:58 PM
+ * @Date    : Jun 26, 2020 3:42:23 PM
  * @Version : 1.0.1
  */
-public class AddAccountTest {
-	
-	/**
-	 * Desc : 쉬운 코드에프 계정 추가 샘플
-	 * @Company : ©CODEF corp.
-	 * @Author  : notfound404@codef.io
-	 * @Date    : Jun 29, 2020 3:36:11 PM
-	 * @Version : 1.0.1
-	 * @throws IOException
-	 * @throws InterruptedException
-	 */
+public class EasyCodefBusinessStatusTest {
+
 	@SuppressWarnings("unchecked")
 	@Test
-	public void addAccount() throws IOException, InterruptedException {
+	public void usageExample() throws UnsupportedEncodingException, JsonProcessingException, InterruptedException {
 		/**	
 		 * #1.쉬운 코드에프 객체 생성
 		 */
@@ -70,35 +57,31 @@ public class AddAccountTest {
 		
 		/**	
 		 * #5.요청 파라미터 설정
-		 * - 계정관리 파라미터를 설정(https://developer.codef.io/cert/account/cid-overview)	
+		 * - 각 상품별 파라미터를 설정(https://developer.codef.io/products)	
 		 */
-		List<HashMap<String, Object>>  accountList = new ArrayList<HashMap<String, Object>> ();
+		HashMap<String, Object> parameterMap = new HashMap<String, Object>();
+		parameterMap.put("organization", "0004");
 		
-		HashMap<String, Object> accountMap = new HashMap<String, Object>();
-		accountMap.put("countryCode",	"KR");
-		accountMap.put("businessType",	"CD");
-		accountMap.put("clientType",  	"P");
-		accountMap.put("organization",	"0309");
-		accountMap.put("loginType",  	"1");
-		accountMap.put("id",  			"user_id");
+		List<HashMap<String, String>> reqIdentityList = new ArrayList<HashMap<String, String>>();
 		
-		try {
-			accountMap.put("password",  	EasyCodefUtil.encryptRSA("user_password", codef.getPublicKey())); // RSA암호화가 필요한 필드는 encryptRSA(String plainText, String publicKey) 메서드를 이용해 암호화
-		} catch (Exception e) {
-			e.printStackTrace();
-			return;
-		}
-		accountList.add(accountMap);
+		HashMap<String, String> reqIdentityMap1 = new HashMap<String, String>();
+		reqIdentityMap1.put("reqIdentity", "3333344444");
+		reqIdentityList.add(reqIdentityMap1);
 		
-		HashMap<String, Object> parameterMap = new HashMap<String, Object> ();
-		parameterMap.put("accountList", accountList);
-		parameterMap.put("connectedId", "sandbox_connectedId_01");
+		HashMap<String, String> reqIdentityMap2 = new HashMap<String, String>();
+		reqIdentityMap2.put("reqIdentity", "1234567890");
+		reqIdentityList.add(reqIdentityMap2);
 		
+		parameterMap.put("reqIdentityList", reqIdentityList);
 		
-		/**	#6.요청	*/
-		String result = codef.addAccount(EasyCodefServiceType.SANDBOX, parameterMap);
+		/**	
+		 * #6.코드에프 정보 조회 요청
+		 * - 서비스타입(API:정식, DEMO:데모, SANDBOX:샌드박스)
+		 */
+		String productUrl = "/v1/kr/public/nt/business/status";	// (예시)사업자등록상태(휴폐업조회) URL
+		String result = codef.requestProduct(productUrl, EasyCodefServiceType.SANDBOX, parameterMap);
 		
-		/**	#7.결과 확인	*/
+		/**	#7.코드에프 정보 결과 확인	*/
 		System.out.println(result);
 		
 		HashMap<String, Object> responseMap = new ObjectMapper().readValue(result, HashMap.class);
