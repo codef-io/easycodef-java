@@ -10,7 +10,7 @@ CODEF는 데이터를 활용한 서비스를 지원합니다. 온라인에 흩�
 
 easycodef-java는 CODEF API 연동 개발을 돕는 라이브러리 유틸입니다.  사용을 위해서는 [홈페이지](https://codef.io/) 가입 후 데모/정식 서비스 신청을 통해 자격 증명을 위한 클라이언트 정보 등을 발급받아야 하며 사용 가능한 모든 API의 엔드포인트(은행, 카드, 보험, 증권, 공공, 기타)와 요청/응답 항목은 모두 [개발가이드](https://developer.codef.io/)를 통해 확인할 수 있습니다.
 
-[![Maven Central](https://img.shields.io/maven-central/v/io.codef.api/easycodef-java.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22io.codef.api%22%20AND%20a:%22easycodef-java%22) [![javadoc](https://javadoc.io/badge2/io.codef.api/easycodef-java/javadoc.svg)](https://javadoc.io/doc/io.codef.api/easycodef-java) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Maven Central](https://img.shields.io/maven-central/v/io.codef.api/easycodef-java.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22io.codef.api%22%20AND%20a:%22easycodef-java%22) [![javadoc](https://javadoc.io/badge2/io.codef.api/easycodef-java/javadoc.svg)](https://javadoc.io/doc/io.codef.api/easycodef-java) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/codef-io/easycodef-java/blob/master/LICENSE)
 
 # Get it!
   
