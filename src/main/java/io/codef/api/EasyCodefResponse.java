@@ -1,6 +1,7 @@
 package io.codef.api;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -46,15 +47,25 @@ public class EasyCodefResponse extends HashMap<String, Object>{
 	 */
 	@SuppressWarnings("unchecked")
 	protected EasyCodefResponse(HashMap<String, Object> map) {
-		result = (HashMap<String, Object>) map.get(EasyCodefConstant.RESULT);
-		try {
-			data = (HashMap<String, Object>) map.get(EasyCodefConstant.DATA);
-		} catch (ClassCastException e) {
-			data = (List<HashMap<String, Object>>) map.get(EasyCodefConstant.DATA);
+		Iterator<String> iter = map.keySet().iterator();
+		while(iter.hasNext()) {
+			String key = iter.next();
+			if(EasyCodefConstant.RESULT.equals(key)) {	// 결과 코드 정보
+				result = (HashMap<String, Object>) map.get(EasyCodefConstant.RESULT);
+				this.put(EasyCodefConstant.RESULT, result);
+			} else if(EasyCodefConstant.RESULT.equals(key)) { //결과 데이터 정보
+				try {
+					data = (HashMap<String, Object>) map.get(EasyCodefConstant.DATA);
+				} catch (ClassCastException e) {
+					data = (List<HashMap<String, Object>>) map.get(EasyCodefConstant.DATA);
+				}
+				this.put(EasyCodefConstant.DATA, data);
+			}else {
+				this.put(key, map.get(key));	// 사용자 정의 파라미터가 존재하는 경우 응답부에 추가 설정
+			}
 		}
 		
-		this.put(EasyCodefConstant.RESULT, result);
-		this.put(EasyCodefConstant.DATA, data);
+		
 	}
 	
 	/**
