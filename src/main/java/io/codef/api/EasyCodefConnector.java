@@ -44,6 +44,7 @@ public class EasyCodefConnector {
 	 * @return
 	 * @throws InterruptedException
 	 */
+	@SuppressWarnings("unchecked")
 	protected static EasyCodefResponse execute(String urlPath, int serviceType, HashMap<String, Object> bodyMap, EasyCodefProperties properties) throws InterruptedException {
 		/**	#1.토큰 체크	*/
 		String domain;
@@ -81,12 +82,12 @@ public class EasyCodefConnector {
 		
 		/**	#3.상품 조회 요청	*/
 		HashMap<String, Object> responseMap = requestProduct(domain + urlPath, accessToken, bodyString);
-		if(EasyCodefConstant.INVALID_TOKEN.equals(responseMap.get("error"))){	// 액세스 토큰 유효기간 만료되었을 경우 토큰 재발급 후 상품 조회 요청 진행
+		if(EasyCodefConstant.INVALID_TOKEN.equals(responseMap.get("error")) || "CF-00401".equals(((HashMap<String, Object>)responseMap.get(EasyCodefConstant.RESULT)).get(EasyCodefConstant.CODE))){	// 액세스 토큰 유효기간 만료되었을 경우 토큰 재발급 후 상품 조회 요청 진행
 			EasyCodefTokenMap.setToken(clientId, null);		// 토큰 정보 초기화
 			accessToken = getToken(clientId, clientSecret); // 토큰 설정
 			responseMap = requestProduct(domain + urlPath, accessToken, bodyString);
-		} else if (EasyCodefConstant.ACCESS_DENIED.equals(responseMap.get("error"))) {	//접근 권한이 없는 경우 - 오류코드 반환
-			EasyCodefResponse response = new EasyCodefResponse(EasyCodefMessageConstant.UNAUTHORIZED); 
+		} else if (EasyCodefConstant.ACCESS_DENIED.equals(responseMap.get("error")) || "CF-00403".equals(((HashMap<String, Object>)responseMap.get(EasyCodefConstant.RESULT)).get(EasyCodefConstant.CODE))) {	// 접근 권한이 없는 경우 - 오류코드 반환
+			EasyCodefResponse response = new EasyCodefResponse(EasyCodefMessageConstant.UNAUTHORIZED, EasyCodefConstant.ACCESS_DENIED); 
 			return response;
 		}
 		
@@ -185,7 +186,7 @@ public class EasyCodefConnector {
 		String accessToken = EasyCodefTokenMap.getToken(clientId);
 		if(accessToken == null || "".equals(accessToken)) {
 			while(i < REPEAT_COUNT) {	// 토큰 발급 요청은 최대 3회까지 재시도
-				HashMap<String, Object> tokenMap = requestToken(clientId, clientSecret);	// 토큰 발급 요청
+				HashMap<String, Object> tokenMap = publishToken(clientId, clientSecret);	// 토큰 발급 요청
 				if(tokenMap != null) {
 					String newToken = (String)tokenMap.get("access_token");
 					EasyCodefTokenMap.setToken(clientId, newToken);	// 토큰 저장
@@ -213,7 +214,7 @@ public class EasyCodefConnector {
 	 * @param clientSecret
 	 * @return
 	 */
-	protected static HashMap<String, Object> requestToken(String clientId, String clientSecret) {
+	protected static HashMap<String, Object> publishToken(String clientId, String clientSecret) {
 		BufferedReader br = null;
 		try {
 			// HTTP 요청을 위한 URL 오브젝트 생성

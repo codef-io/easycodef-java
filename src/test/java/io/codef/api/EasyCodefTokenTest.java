@@ -1,12 +1,11 @@
 package io.codef.api;
 
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 
-import java.io.UnsupportedEncodingException;
+import java.io.IOException;
 
 import org.junit.Test;
-
-import com.fasterxml.jackson.core.JsonProcessingException;
 
 /**
  * <pre>
@@ -23,7 +22,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 public class EasyCodefTokenTest {
 
 	@Test
-	public void usageExample() throws UnsupportedEncodingException, JsonProcessingException, InterruptedException {
+	public void usageExample() throws InterruptedException, IOException {
 		/**	
 		 * #1.쉬운 코드에프 객체 생성
 		 */
@@ -54,10 +53,21 @@ public class EasyCodefTokenTest {
 		 * #5.코드에프 토큰 발급 요청
 		 * - 서비스타입(API:정식, DEMO:데모, SANDBOX:샌드박스)
 		 */
-		String accessToken = codef.requestToken(EasyCodefServiceType.SANDBOX);
-		System.out.println(accessToken);
-		 
+		String accessToken1 = codef.requestToken(EasyCodefServiceType.SANDBOX);			// 토큰 요청1 (requestToken)
+		System.out.println(accessToken1);
 		
-		assertNotNull("엑세스 토큰 발급 실패(클라이언트 정보(EasyCodefClientInfo)가 올바르게 설정되었는지 확인 필요)", accessToken);
+		String accessToken2 = codef.requestToken(EasyCodefServiceType.SANDBOX);			// 토큰 요청2 (requestToken)
+		System.out.println(accessToken2);
+		
+		assertEquals("성능 향상을 위한 재사용 토큰 이용 확인", accessToken1, accessToken2);
+		
+		
+		String accessToken3 = codef.requestNewToken(EasyCodefServiceType.SANDBOX);		// 신규 토큰 요청1 (requestNewToken)
+		System.out.println(accessToken3);
+		
+		String accessToken4 = codef.requestNewToken(EasyCodefServiceType.SANDBOX);		// 신규 토큰 요청2 (requestNewToken)
+		System.out.println(accessToken4);
+		
+		assertNotEquals("토큰 권한 변경 등에 따라 필요한 신규 토큰 발급 확인", accessToken3, accessToken4);
 	}
 }

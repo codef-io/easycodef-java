@@ -2,6 +2,7 @@ package io.codef.api;
 
 import static org.junit.Assert.assertEquals;
 
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 
 import org.junit.Test;
@@ -23,7 +24,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 public class EasyCodefTokenReuseTest {
 	
 	@Test
-	public void reuse() throws UnsupportedEncodingException, JsonProcessingException, InterruptedException {
+	public void reuse() throws InterruptedException, IOException {
 		
 		String accessToken1 = usageExample(EasyCodefServiceType.SANDBOX);
 		String accessToken2 = usageExample(EasyCodefServiceType.SANDBOX);
@@ -38,7 +39,7 @@ public class EasyCodefTokenReuseTest {
 		assertEquals("토큰 재사용 실패", accessToken1, accessToken2);
 	}
 
-	public String usageExample(EasyCodefServiceType type) throws UnsupportedEncodingException, JsonProcessingException, InterruptedException {
+	public String usageExample(EasyCodefServiceType type) throws InterruptedException, IOException {
 		/**	
 		 * #1.쉬운 코드에프 객체 생성
 		 */
