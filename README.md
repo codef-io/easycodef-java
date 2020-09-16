@@ -67,7 +67,7 @@ codef.setClientInfo(EasyCodefClientInfo.CLIENT_ID, EasyCodefClientInfo.CLIENT_SE
 * - 암호화가 필요한 필드에 사용 (ex)encryptValue(String plainText); */
 codef.setPublicKey(EasyCodefClientInfo.PUBLIC_KEY);
 
-/** #5.코드에프 토큰 발급 요청 - 서비스타입(API:정식, DEMO:데모, SANDBOX:샌드박스)
+/** #5.코드에프 토큰 발급 요청 - 서비스타입(API:정식, DEMO:데모, SANDBOX:샌드박스) */
 String accessToken1 = codef.requestToken(EasyCodefServiceType.SANDBOX);	// 토큰 요청1 (requestToken)
 System.out.println(accessToken1);
 		
