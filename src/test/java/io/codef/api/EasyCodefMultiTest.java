@@ -1,8 +1,7 @@
 package io.codef.api;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import org.junit.Test;
-
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -26,7 +25,9 @@ import java.util.*;
 public class EasyCodefMultiTest {
 
     /* 다건인증을 진행시 동일 계정으로 판별하기 위한 id값 */
-    private static final String id = "example_codef_id_1234";
+    private static final String id = "example_codef_id_2345";
+    /* 1차 요청 응답 값 */
+    private static String resultA;
 
 
     /**
@@ -34,8 +35,7 @@ public class EasyCodefMultiTest {
      * - 멀티 스레드를 이용한 다건 요청 처리
      * - 1번 상품 1차 요청에 대한 응답 코드 CF-03002(추가인증 요청) 확인 필요 -> 간편 인증 후 2차 요청 진행
      */
-    @Test
-    public void usageExample1() throws InterruptedException {
+    public static void main(String[] args) throws InterruptedException, IOException {
 
         /**
          * #1.쉬운 코드에프 객체 생성
@@ -87,29 +87,33 @@ public class EasyCodefMultiTest {
             new Thread(() -> {
                 try {
                     /* API 요청 */
-                    String result = codef.requestProduct(bodyMap.get("urlPath").toString(), EasyCodefServiceType.API, bodyMap);
+                    resultA = codef.requestProduct(bodyMap.get("urlPath").toString(), EasyCodefServiceType.API, bodyMap);
 
                     /* 응답 결과 확인
                      * - 1번 상품 1차 요청에 대한 추가 인증 요청 출력 ( code : CF-03002 )
-                     * - 후에 2차 요청 성공시 1번 상품을 제외한 나머지 상품 (2번, 3번) 조회 결과 값 출력 부분
                      */
-                    System.out.println(result);
+                    System.out.println(resultA);
                 } catch (UnsupportedEncodingException | JsonProcessingException | InterruptedException e) {
                     throw new RuntimeException(e);
                 }
             }).start();
         }
 
-        //junit으로 테스트시 바로 종료처리 되기 때문에 슬립 처리
-        Thread.sleep(300000);
+        /* 간편 인증 (ex.카카오 인증) 후 키보드 입력시 2차 요청 진행 */
+        Scanner sc = new Scanner(System.in);
+        String i = sc.next();
+        System.out.println("입력 값 : " + i + ", ========= 2차 요청이 진행될 예정 입니다.");
+
+        /* 2차 요청 함수 호출 */
+        usageExample2(resultA);
     }
 
 
     /**
-     * 2차 요청 - 간편 인증 (ex.카카오 인증) 후 2차 요청 진행 (2차 요청 전 twoWayInfoMap 변경 필요)
+     * 2차 요청 - 간편 인증 (ex.카카오 인증) 후 진행
      */
-    @Test
-    public void usageExample2() throws IOException, InterruptedException {
+    @SuppressWarnings("unchecked")
+    private static void usageExample2(String resultA) throws IOException, InterruptedException {
 
         /**
          *  쉬운 코드이프 객체 생성 및 정보 설정 (#1~#4)
@@ -126,18 +130,19 @@ public class EasyCodefMultiTest {
         /**
          *  추가 인증 요청 파라미터 설정
          */
-        // 1차 입력부 포함 (기본 파라미터)
-        HashMap<String, Object> bodyMap = Test_KR_PB_PP_004();
+        HashMap<String, Object> bodyMap = Test_KR_PB_PP_004(); // 1차 입력부 포함 (기본 파라미터)
 
-        bodyMap.put("is2Way", true);
-        bodyMap.put("simpleAuth", "1");
+        bodyMap.put("is2Way", true); // true 값 고정
+        bodyMap.put("simpleAuth", "1"); // loginType="5" 만 사용, 0: cancel, 1: ok
 
-        /* 1차 요청에서 받은 응답 값으로 설정 - 값 설정 후 2차 요청 진행 */
+        /* 1차 요청에서 받은 응답 값으로 설정 - 값 설정 후 2차 요청 진행 가능 */
+        Map<String, Object> getMap = (Map<String, Object>) new ObjectMapper().readValue(resultA, Map.class).get("data");
+
         HashMap<String, Object> twoWayInfoMap = new HashMap<String, Object>();
-        twoWayInfoMap.put("jobIndex", 0);
-        twoWayInfoMap.put("threadIndex", 0);
-        twoWayInfoMap.put("jti", "62bd44fbec829c545056f59f");
-        twoWayInfoMap.put("twoWayTimestamp", 1656571132897L);
+        twoWayInfoMap.put("jobIndex", getMap.get("jobIndex"));
+        twoWayInfoMap.put("threadIndex", getMap.get("threadIndex"));
+        twoWayInfoMap.put("jti", getMap.get("jti"));
+        twoWayInfoMap.put("twoWayTimestamp", getMap.get("twoWayTimestamp"));
 
         bodyMap.put("twoWayInfo", twoWayInfoMap);
         // 요청 파라미터 설정 종료
@@ -145,9 +150,7 @@ public class EasyCodefMultiTest {
         /* API 요청 */
         String result = codef.requestCertification(bodyMap.get("urlPath").toString(), EasyCodefServiceType.API, bodyMap);
 
-        /* 응답결과 확인
-         *  - 1번 상품의 2차 요청 결과 값 출력 부분
-         */
+        /* 응답결과 확인 */
         System.out.println(result);
     }
 
@@ -157,7 +160,7 @@ public class EasyCodefMultiTest {
      */
 
     /* 1번 상품 건강보험 건강검진결과 */
-    private HashMap<String, Object> Test_KR_PB_PP_004() {
+    private static HashMap<String, Object> Test_KR_PB_PP_004() {
         // 요청 파라미터 설정 시작
         HashMap<String, Object> bodyMap = new HashMap<String, Object>();
 
@@ -181,7 +184,7 @@ public class EasyCodefMultiTest {
     }
 
     /* 2번 상품 건강보험공단 진료받은 내용 */
-    private HashMap<String, Object> TEST_KR_PB_PP_019() {
+    private static HashMap<String, Object> TEST_KR_PB_PP_019() {
         // 요청 파라미터 설정 시작
         HashMap<String, Object> bodyMap = new HashMap<String, Object>();
 
@@ -204,7 +207,7 @@ public class EasyCodefMultiTest {
     }
 
     /* 3번 상품 건강보험공단 진료 및 투약정보 */
-    private HashMap<String, Object> Test_KR_PB_PP_018() {
+    private static HashMap<String, Object> Test_KR_PB_PP_018() {
         // 요청 파라미터 설정 시작
         HashMap<String, Object> bodyMap = new HashMap<String, Object>();
 
