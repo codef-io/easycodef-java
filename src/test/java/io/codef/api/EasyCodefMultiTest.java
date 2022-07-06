@@ -99,10 +99,13 @@ public class EasyCodefMultiTest {
             }).start();
         }
 
-        /* 간편 인증 (ex.카카오 인증) 후 키보드 입력시 2차 요청 진행 */
+        /**
+         * #7. 간편 인증 (ex.카카오 인증) 후 키보드 입력시 2차 요청 진행
+         */
+        System.out.println(" ============= 간편 인증 완료 후  콘솔창에 커서를 두고 값을 입력해 주세요. (ex. 1 or a 등 제약 없음- 간편인증 완료 확인 용도)  =============  ");
         Scanner sc = new Scanner(System.in);
         String i = sc.next();
-        System.out.println("입력 값 : " + i + ", ========= 2차 요청이 진행될 예정 입니다.");
+        System.out.println(" ============= ( 입력 값 : " + i + " ), 2차 요청이 진행될 예정 입니다. ============= ");
 
         /* 2차 요청 함수 호출 */
         usageExample2(resultA);
@@ -150,8 +153,21 @@ public class EasyCodefMultiTest {
         /* API 요청 */
         String result = codef.requestCertification(bodyMap.get("urlPath").toString(), EasyCodefServiceType.API, bodyMap);
 
-        /* 응답결과 확인 */
-        System.out.println(result);
+        /* 간편 인증 재시도 요청 (간편인증을 완료하지 않고 2차 요청을 할 경우) - 3회까지 재시도 가능 */
+        Map<String, Object> getMap2 = (Map<String, Object>) new ObjectMapper().readValue(result, Map.class).get("result");
+        if (getMap2.get("code").equals("CF-03002")) {
+            /* 간편 인증 (ex.카카오 인증) 후 키보드 입력시 2차 요청 진행 */
+            System.out.println(result);
+            System.out.println(" ============= 간편 인증이 완료되지 않았습니다. 완료 후 다시 한번 값을 입력하세요. =============  ");
+            Scanner sc = new Scanner(System.in);
+            String i = sc.next();
+            System.out.println(" ============= ( 입력 값 : " + i + " ), 2차 요청이 진행될 예정 입니다. ============= ");
+            /* 2차 요청 함수 호출 */
+            usageExample2(result);
+        } else {
+            /* 응답결과 확인 */
+            System.out.println(result);
+        }
     }
 
 
