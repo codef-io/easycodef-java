@@ -338,6 +338,168 @@ assertEquals("코드에프 상품 요청 결과 실패(반환된 코드와 메�
 
 추가 인증에 필요한 파라미터 설명은 개발 가이드의 각 상품  페이지에서 확인할 수 있으며 자세한 내용은 [개발가이드 추가인증](https://developer.codef.io/dic#menu-2)을 통해 확인하세요.
 
+## 4.다건요청
+
+코드에프 API는 1개 요청 1개 응답을 원칙으로 합니다. 추가 인증이 필요한 상품인 경우 같은 고객이 요청 A와 요청 B를 호출할 경우 추가 인증을 <br>
+두 번 해야 하는 번거로움이 있습니다. 다건 요청 기능을 활용하면 요청 A의 인증만으로 요청 B는 추가 인증 없이 응답받을 수 있습니다.
+
+> **다건요청 기능에 대한 자세한 설명은 [개발가이드 다건요청](https://developer.codef.io/common-guide/multiple-requests)에서 확인할 수 있습니다.**
+
+#### - [건강보험공단 건강검진결과](https://developer.codef.io/products/public/each/pp/nhis-health-check) 다건요청 예제
+
+```java
+// 건강보험공단 건강검진결과 (다건요청)
+/** #1.쉬운 코드에프 객체 생성 및 클라이언트 정보 설정 */
+EasyCodef codef = new EasyCodef();
+codef.setClientInfoForDemo(DEMO_CLIENT_ID, DEMO_CLIENT_SECRET);
+codef.setClientInfo(CLIENT_ID, CLIENT_SECRET);
+codef.setPublicKey(PUBLIC_KEY);
+
+/** #2.식별 아이디 생성 / 요청 식별 아이디(SSO(동일계정) 구분값) / 사용자 계정을 식별할 수 있는 유일 값 세팅 (ex. 아이디 + UUID)
+ *  다건요청에서 사용되는 식별아이디는 각 요청에 필수로 입력해야 합니다.
+ * */
+ID = "testID" + UUID.randomUUID();
+
+/** #3.다건 요청에 대한 결과값을 확인하기 위해 API요청 Thread를 생성하여 확인 */
+for (int i = 0; i < 2; i++) {
+    
+    /** #4.요청 파라미터 설정 - 각 상품별 파라미터를 설정(https://developer.codef.io/products) */
+    // 다건요청 확인을 위해 조회 연도를 다르게 설정
+    // 요청A : 2018년도 데이터 / 요청 B : 2019년도 데이터
+    String searchStartYear = String.valueOf(2018+i);
+    String searchEndYear = String.valueOf(2018+i);
+
+    HashMap<String, Object> parameterMap = new HashMap<String, Object>();
+    parameterMap.put("organization", "0002");
+    parameterMap.put("loginType", "5"); // "0":(공동/금융)인증서 "5":간편인증
+    parameterMap.put("loginTypeLevel", "1");  // 1:카카오톡, 2:페이코, 3:삼성패스, 4:KB모바일, 5:통신사(PASS), 6:네이버, 7:신한인증서, 8: toss
+    parameterMap.put("userName", "홍길동");
+    parameterMap.put("phoneNo", "0101234xxxx");
+    parameterMap.put("identity", "19000101");
+    parameterMap.put("inquiryType", "0");
+
+    parameterMap.put("id", ID); //식별아이디
+
+    parameterMap.put("searchStartYear", searchStartYear);
+    parameterMap.put("searchEndYear", searchEndYear);
+    parameterMap.put("type", "1");
+
+    /** #5.Thread 실행*/
+    Thread t = new requestThread(codef, parameterMap, i);
+    t.start();
+
+    // API 요청A와 요청B 다건 요청을 위해서는 요청A 처리 후 요청B를 처리할 수 있도록
+    // 요청A 송신 후 약 0.5초 ~ 1초 이내 요청B 송신 필요
+    Thread.sleep(1000);
+}
+```
+
+다건 요청 Thread 정의 예제
+```java
+/** #6.다건 요청 확인을 위한 요청 Thread 정의 */
+public class requestThread extends Thread{
+    private EasyCodef codef;
+    private HashMap<String, Object> parameterMap;
+    private int threadNo;
+
+    public requestThread(EasyCodef codef, HashMap<String, Object> parameterMap, int threadNo) {
+        this.codef = codef;
+        this.parameterMap = parameterMap;
+        this.threadNo = threadNo;
+    }
+
+    @Override
+    public void run() {
+
+        /** #7.코드에프 정보 조회 요청 - 서비스타입(API:정식, DEMO:데모, SANDBOX:샌드박스) */
+        String productUrl = "/v1/kr/public/pp/nhis-health-checkup/result";
+        String result;
+        String code;
+        boolean continue2Way = false;
+
+        try {
+            result = codef.requestProduct(productUrl, EasyCodefServiceType.DEMO, parameterMap);
+        } catch (UnsupportedEncodingException e) {
+            throw new RuntimeException(e);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+
+        HashMap<String, Object> responseMap = null;
+        try {
+            responseMap = new ObjectMapper().readValue(result, HashMap.class);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
+
+        HashMap<String, Object> resultMap = (HashMap<String, Object>)responseMap.get("result");
+
+        //추가 인증이 필요한 경우 result 객체의 응답코드가 CF-03002
+        code = (String)resultMap.get("code");
+        System.out.println("응답코드 : " + code);
+
+        HashMap<String, Object> dataMap = (HashMap<String, Object>)responseMap.get("data");
+
+        // data객체에 continue2Way 필드가 존재하는지 확인
+        if (dataMap.containsKey("continue2Way")) {
+            continue2Way = Boolean.valueOf((boolean)dataMap.get("continue2Way"));
+        }
+
+        // 응답코드가 CF-03002 이고 continue2Way 필드가 true인 경우 추가 인증 정보를 변수에 저장
+        if (code.equals("CF-03002") && continue2Way){
+            JOB_INDEX =  (int)dataMap.get("jobIndex");
+            THREAD_INDEX = (int)dataMap.get("threadIndex");
+            JTI = (String) dataMap.get("jti");
+            TWO_WAY_TIMESTAMP = (Long)dataMap.get("twoWayTimestamp");
+        }
+
+        /** #8.결과값 확인 */
+        System.out.println("threadNo " + threadNo + " result : " + result);
+    }
+}
+```
+
+요청 A 간편인증 완료 예제
+
+```java
+/** #1.쉬운 코드에프 객체 생성 및 클라이언트 정보 설정 */
+EasyCodef codef = new EasyCodef();
+codef.setClientInfoForDemo(DEMO_CLIENT_ID, DEMO_CLIENT_SECRET);
+codef.setClientInfo(CLIENT_ID, CLIENT_SECRET);
+codef.setPublicKey(PUBLIC_KEY);
+
+/** #2.추가인증 입력부 파라미터 설정 */
+HashMap<String, Object> parameterMap = new HashMap<String, Object>();
+parameterMap.put("organization", "0002"); //기관코드 필수 입력
+parameterMap.put("id", ID); //식별아이디 필수 입력
+
+//간편인증 추가인증 입력부
+parameterMap.put("simpleAuth", "1");
+parameterMap.put("is2Way", true);
+
+/** #3.twoWayInfo 파라미터 설정*/
+HashMap<String, Object> twoWayInfo = new HashMap<String, Object>();
+twoWayInfo.put("jobIndex", JOB_INDEX);
+twoWayInfo.put("threadIndex", THREAD_INDEX);
+twoWayInfo.put("jti", JTI);
+twoWayInfo.put("twoWayTimestamp", TWO_WAY_TIMESTAMP);
+
+parameterMap.put("twoWayInfo", twoWayInfo);
+
+// 요청 Endpoint는 동일함
+String productUrl = "/v1/kr/public/pp/nhis-health-checkup/result";
+String result;
+
+// 추가인증 요청 시에는 이지코드에프.requestCertification 으로 호출
+result = codef.requestCertification(productUrl, EasyCodefServiceType.DEMO, parameterMap);
+
+/** #4.결과값 확인 */
+System.out.println("요청A(추가인증) result : " + result);
+
+```
+
 # Ask us
 
 easycodef-java 라이브러리 사용에 대한 문의사항과 개발 과정에서의 오류 등에 대한 문의를 [홈페이지 문의게시판](https://codef.io/#/cs/inquiry)에 올려주시면 운영팀이 답변을 드립니다. 문의게시판의 작성 양식에 맞춰 문의 글을 남겨주세요. 가능한 빠르게 응답을 드리겠습니다.
