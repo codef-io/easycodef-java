@@ -284,10 +284,8 @@ public class EasyCodefConnector {
 				// 확인 중 오류 발생 시 (ex. token이 null일 경우)
 				return false;
 			}
-			if(EasyCodefUtil.checkValidity((int)(tokenMap.get("exp")))) {	// 토큰의 유효 기간 확인
-				// 정상토큰
-				return true;
-			}
+            // 토큰의 유효 기간 확인
+            return EasyCodefUtil.checkValidity((int) (tokenMap.get("exp")));
 		}
 		return false;
 	}
