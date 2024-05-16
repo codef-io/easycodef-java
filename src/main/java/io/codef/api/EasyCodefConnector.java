@@ -184,7 +184,7 @@ public class EasyCodefConnector {
 	private static String getToken(String clientId, String clientSecret) throws InterruptedException {
 		int i = 0;
 		String accessToken = EasyCodefTokenMap.getToken(clientId);
-		if(accessToken == null || "".equals(accessToken)) {
+		if(accessToken == null || "".equals(accessToken) || !checkToken(accessToken)) { //만료 조건 추가
 			while(i < REPEAT_COUNT) {	// 토큰 발급 요청은 최대 3회까지 재시도
 				HashMap<String, Object> tokenMap = publishToken(clientId, clientSecret);	// 토큰 발급 요청
 				if(tokenMap != null) {
@@ -268,5 +268,27 @@ public class EasyCodefConnector {
 				} catch (IOException e) { }
 			}
 		}
+	}
+
+	/**
+	 * 토큰 유효기간 확인
+	 * @param accessToken
+	 * @return
+	 */
+	private static boolean checkToken(String accessToken) {
+		if(accessToken != null) {
+			HashMap<String, Object> tokenMap = null;
+			try {
+				tokenMap = EasyCodefUtil.getTokenMap(accessToken);
+			} catch (IOException e) {
+				// 확인 중 오류 발생 시 (ex. token이 null일 경우)
+				return false;
+			}
+			if(EasyCodefUtil.checkValidity((int)(tokenMap.get("exp")))) {	// 토큰의 유효 기간 확인
+				// 정상토큰
+				return true;
+			}
+		}
+		return false;
 	}
 }
