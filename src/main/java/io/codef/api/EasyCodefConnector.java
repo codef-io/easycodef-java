@@ -50,7 +50,7 @@ public class EasyCodefConnector {
 		String domain;
 		String clientId;
 		String clientSecret;
-		
+
 		if(serviceType == 0) {
 			domain = EasyCodefConstant.API_DOMAIN;
 			clientId = properties.getClientId();
@@ -276,17 +276,14 @@ public class EasyCodefConnector {
 	 * @return
 	 */
 	private static boolean checkToken(String accessToken) {
-		if(accessToken != null) {
-			HashMap<String, Object> tokenMap = null;
-			try {
-				tokenMap = EasyCodefUtil.getTokenMap(accessToken);
-			} catch (IOException e) {
-				// 확인 중 오류 발생 시 (ex. token이 null일 경우)
-				return false;
-			}
-            // 토큰의 유효 기간 확인
-            return EasyCodefUtil.checkValidity((int) (tokenMap.get("exp")));
-		}
-		return false;
-	}
+        HashMap<String, Object> tokenMap = null;
+        try {
+            tokenMap = EasyCodefUtil.getTokenMap(accessToken);
+        } catch (IOException e) {
+            // 확인 중 오류 발생 시
+            return false;
+        }
+        // 토큰의 유효 기간 확인
+        return EasyCodefUtil.checkValidity((int) (tokenMap.get("exp")));
+    }
 }
