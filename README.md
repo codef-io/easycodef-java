@@ -14,10 +14,11 @@ easycodef-java는 CODEF API 연동 개발을 돕는 라이브러리 유틸입니
 
 # Get it!
   
-## Maven
+## Dependency
 
 라이브러리는 [Maven 중앙 저장소](https://search.maven.org/artifact/io.codef.api/easycodef-java)에서 확인 가능한 io.codef.api 패키지에 속해 있으며 의존관계 설정을 통해 사용 가능합니다.
 
+- Maven
 ```xml
 <dependencies>
   ...
@@ -25,10 +26,14 @@ easycodef-java는 CODEF API 연동 개발을 돕는 라이브러리 유틸입니
   <dependency>
     <groupId>io.codef.api</groupId>
     <artifactId>easycodef-java</artifactId>
-    <version>1.0.5</version>
+    <version>1.0.6</version>
   </dependency>
   ...
 </dependencies>
+```
+
+```gradle
+  implementation 'io.codef.api:easycodef-java:1.0.6'
 ```
 
 ## Non-Maven dependency resolution
