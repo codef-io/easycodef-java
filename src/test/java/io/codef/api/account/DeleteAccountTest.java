@@ -19,9 +19,9 @@ import io.codef.api.EasyCodefServiceType;
 /**
  * FileName : EasyCodefTest.java
  * Comment  : 쉬운 코드에프 라이브러리 사용 예제 - 사용자 계정 관리
+ *
+ * @author : notfound404
  * @version : 1.0.1
- * @author  : notfound404
- * @date    : Mar 30, 2020
  */
 public class DeleteAccountTest {
 	
