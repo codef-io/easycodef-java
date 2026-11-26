@@ -9,9 +9,8 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
+import java.util.Base64;
 import java.util.HashMap;
-
-import org.apache.commons.codec.binary.Base64;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -227,7 +226,7 @@ public class EasyCodefConnector {
 			
 			// 클라이언트아이디, 시크릿코드 Base64 인코딩
 			String auth = clientId + ":" + clientSecret;
-			byte[] authEncBytes = Base64.encodeBase64(auth.getBytes());
+			byte[] authEncBytes = Base64.getEncoder().encode(auth.getBytes());
 			String authStringEnc = new String(authEncBytes);
 			String authHeader = "Basic " + authStringEnc;
 			
